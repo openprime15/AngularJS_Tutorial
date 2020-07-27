@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+	<title>Insert title here</title>
+</head>
+<style>
+	.test_css.ng-empty{
+		background-color: aqua;
+	}
+	.test_css.ng-not-empty{
+		background-color: lightgreen;
+	}
+	/* 클릭한 적이 있을 경우  */
+	.test_css.ng-touched{
+		width:200px;
+	}
+	/* 클릭하기 전  */
+	.test_css.ng-untouched{
+		width:1000px;
+	}
+	/* 유효한 값이 들어 있을 때 */
+	.test_css.ng-valid{
+		height:200px;
+	}
+	/* 유효하지 않은  값이 들어 있을 때 */
+	.test_css.ng-invalid{
+		height:100px;
+	}
+</style>
+
+<body>
+
+	<div ng-app="">
+		data1: <input type="text" ng-model="data1" /><br>
+		data2: <input type="text" ng-model="data2" /><br>
+		<hr />
+		data1: {{data1}}<br>
+		data2: {{data2}}<br>
+		<hr>
+		<form ng-app="" name="myForm">
+			<input type="number" name="number1" ng-model="number1"><br />
+			<span ng-show="myForm.number1.$error.number">숫자오류</span><br>
+
+			<input type="email" name="email1" ng-model="email1"><br />
+			<span ng-show="myForm.email1.$error.email">이메일 오류</span>
+
+			<button type="submit">확인</button>
+		</form>
+		<hr>
+		<form ng-app="" name="myForm2">
+			<input type="email" name="email2" ng-model="email2" />
+		</form>
+		<p>valid(유효한 값일 true): {{myForm2.email2.$valid}}</p>
+		<p>dirty(초기값에서 변경되었을 때 true): {{myForm2.email2.$dirty}}</p>
+		<p>Touched(포커스를 잃었을 경우 true): {{myForm2.email2.$touched}}</p>
+
+		<input type="email" name="email3" class="test_css" ng-model="email3">
+
+	</div>
+
+</body>
+
+</html>

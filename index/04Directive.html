@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+<title>Insert title here</title>
+<script type="text/javascript">
+ const app = angular.module("test_app",[])
+ 
+ app.directive("directive1", function(){
+	 return {
+		 restrict: "E",
+		 template : "사용자 정의 지시자1"
+	 }
+ })
+  app.directive("directive2", function(){
+	 return {
+		 restrict: "A",
+		 template : "사용자 정의 지시자2"
+	 }
+ })
+
+ app.directive("directive3", function(){
+	 return{
+		 restrict:"C",
+		 template:"사용자 정의 지시자3"
+	 }
+ })
+ app.directive("directive4", function(){
+	 return{
+		 restrict:"M",
+		 replace: true,
+		 template:"<p>사용자 정의 지시자4: 사용자 정의 지시자4</p>"
+	 }
+ })
+
+</script>
+</head>
+<body>
+
+<div ng-app="test_app" ng-init="data1=100;data2='red';data3=[10,20,30,40,50]">
+	<p>data1: {{data1}}</p>
+	<p style="color:{{data2}}">색깔</p>
+	<p ng-repeat="a1 in data3">{{a1}}</p>
+	<p>사용자 정의 지시자1 : <directive1></directive1></p>
+	<p>사용자 정의 지시자2: <span directive2></span> </p>
+	<p>사용자 정의 지시자3: <span class="directive3"></span></p>
+	<!-- directive: directive4 -->
+</div>
+
+</body>
+</html>
