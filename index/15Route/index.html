@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-route.js"></script>
+	<title>Insert title here</title>
+	<script>
+		const app = angular.module("test_app", ["ngRoute"])
+
+		app.config(function ($routeProvider) {
+			$routeProvider.when("/", {
+				template: "<h1>Main Page</h1>"
+			})
+			$routeProvider.when("/page1", {
+				template: "<h1>Page 1</h1><h3>{{data1}}</h3>",
+				controller: "controller1"
+			})
+			$routeProvider.when("/page2", {
+				templateUrl: "page2.html",
+				controller: "controller2"
+			})
+		})
+		app.controller("controller1", function ($scope) {
+			$scope.data1 = "Controller1에서 세팅한 문자열"
+		})
+		app.controller("controller2", function ($scope, $http) {
+			$scope.data2 = "Controller2에서 세팅한 문자열"
+			let http = $http.get("data.json")
+			http.then(function(response){
+				$scope.data_list=response.data
+				// console.log($scope.data_list)
+			})
+
+		})
+	</script>
+</head>
+
+<body>
+
+	<div ng-app="test_app">
+		<a href="#/!">main page</a>
+		<a href="#!page1">page 1</a>
+		<a href="#!page2">page 2</a>
+		<div ng-view></div>
+	</div>
+
+</body>
+
+</html>

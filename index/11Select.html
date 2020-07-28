@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+	<title>Insert title here</title>
+	<script>
+		const app = angular.module("test_app", [])
+
+		app.controller("controller1", function ($scope) {
+			$scope.data1 = ["value1", "value2", "value3"]
+			$scope.select1 = $scope.data1[0]
+			$scope.select2 = $scope.data1[0]
+			$scope.select3 = $scope.data1[0]
+	
+			$scope.data2 = [
+				{label : "item1", value : "value1"},
+				{label : "item2", value : "value2"},
+				{label : "item3", value : "value3"},
+				
+			]
+			$scope.select4 = $scope.data2[0].value
+			$scope.select5 = $scope.data2[0]
+
+			$scope.data3 =  {
+				item1 : "value1",
+				item2 : "value2",
+				item3 : "value3"
+			}
+
+			$scope.select6 = $scope.data3.item1
+
+			$scope.data4 = {
+				item1 : {a1:"a100",a2:"a200",a3:"a300"},
+				item2 : {a1:"a102",a2:"a202",a3:"a302"},
+				item3 : {a1:"a103",a2:"a203",a3:"a303"}
+			}
+			
+			$scope.select7 = $scope.data4.item1
+
+		})
+
+	</script>
+</head>
+
+<body>
+
+	<div ng-app="test_app" ng-controller="controller1">
+		<select name="" id="">
+			<option value="value1">value1</option>
+			<option value="value2">value2</option>
+			<option value="value3">value3</option>
+		</select>
+		<hr>
+		<select ng-model="select1">
+			<option ng-repeat="str in data1" value="{{str}}">{{str}}</option>
+		</select>
+				<p>{{select2}}</p>
+				<hr>
+		<select ng-model="select2">
+			<option ng-repeat="str in data1">{{str}}</option>
+		</select>
+		<p>{{select2}}</p>
+		<hr>
+		<select ng-model="select3" ng-options="str for str in data1"></select>
+		<p>{{select3}}</p>
+		<hr>
+		<select ng-model="select4">
+		<option ng-repeat="obj in data2" value="{{obj.value}}">{{obj.label}}</option>
+		</select>
+	<p>{{select4}}</p>
+	<!-- option문자열 for value속성값  -->
+	<select ng-model="select5" ng-options="obj.label for obj in data2"></select>
+	<p>{{select5.value}}</p>
+	<hr>
+	<!-- data에서 받아 a1에는 멤버 이름, a2에는 멤버 값이 들어감 -->
+	<select ng-model="select6" ng-options="a1 for (a1, a2) in data3"></select>
+	<p>{{select6}}</p>
+	<hr>
+	<select ng-model="select7" ng-options="a1 for (a1, a2) in data4"></select>
+	<p>{{select7.a1}}</p>
+	<p>{{select7.a2}}</p>
+	<p>{{select7.a3}}</p>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+	<title>Insert title here</title>
+
+	<script>
+		const app = angular.module("test_app", [])
+
+		app.service("myService", function(){
+			this.add = function(a1,a2){
+				return a1 + a2;
+			}
+			this.subtract = function(a1,a2){
+				return a1 - a2;
+			}
+		})
+
+		app.controller("controller1", function($scope,$location, $http, $timeout, myService) {
+			$scope.data1 = 100
+			// absUrl 은 url을 가져올 수 있지만 이것을 통한 이동은 불가
+			$scope.data2 = $location.absUrl()
+			$scope.data3 = location.href
+			$scope.getAjax = function(){
+				const http = $http.get("data.html")
+
+				http.then(function(response){
+					$scope.result1 = response.data
+				})
+			}
+			$timeout(function(){
+				$scope.result2 = "timeout!!"
+			}, 1000)
+
+			$scope.data4 = myService.add(100,200)
+			$scope.data5 = myService.subtract(500,100)
+
+		})
+
+
+	</script>
+</head>
+
+
+<body>
+
+	<div ng-app="test_app" ng-controller="controller1">
+		<p>scope.data1 : {{data1}}</p>
+	<p>scope.data2 : {{data2}}</p>
+	<p>location.href : {{data3}}</p>
+	<hr>
+	<div>{{result1}}</div>
+	<button type="button" ng-click="getAjax()">AJAX 통신</button>
+	<hr>
+	<div>{{result2}}</div>
+	<div>{{data4}}</div>
+	<div>{{data5}}</div>
+	</div>
+
+</body>
+
+</html>

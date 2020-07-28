@@ -1,0 +1,35 @@
+<h1>Page 2</h1>
+<h3>data2 : {{data2}}</h3>
+
+<table border="1">
+	<thead>
+		<tr>
+			<th>이름</th>
+			<th>나이</th>
+			<th>국어</th>
+			<th>영어</th>
+			<th>수학</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="obj in data_list">
+			<td>
+				{{obj.name}}
+			</td>
+			<td>
+				{{obj.age}}
+			</td>
+			<td>
+				{{obj.kor}}
+			</td>
+			<td>
+				{{obj.eng}}
+			</td>
+			<td>
+				{{obj.math}}
+			</td>
+		</tr>
+
+	</tbody>
+
+</table>

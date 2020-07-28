@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+<title>Insert title here</title>
+<script>
+	const app = angular.module("test_app", [])
+
+	app.controller("controller1", function($scope){
+		$scope.data1 = [
+				{
+					name: "홍길동",
+					age: 20
+				},
+				{
+					name: "강길동",
+					age:21
+				},
+								{
+					name: "최길동",
+					age:22
+				}
+		]
+	})
+</script>
+
+</head>
+<body>
+
+<div ng-app="test_app" ng-controller="controller1">
+	<table border="1">
+		<tr ng-repeat="obj in data1">
+			<td>
+				{{$index}}
+			</td>
+			<td>
+				{{obj.name}}
+			</td>
+			<td>
+				{{obj.age}}
+			</td>
+
+		</tr>
+
+	</table>
+</div>
+
+</body>
+</html>

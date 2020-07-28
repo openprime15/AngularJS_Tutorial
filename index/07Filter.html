@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+<title>Insert title here</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.8.0/angular-locale_ko-kr.min.js"></script>
+<script>
+	const app = angular.module("test_app",[])
+
+	app.run(function($rootScope){
+		$rootScope.data1="abCDef"
+		$rootScope.data2 = [
+			{a1: "홍길동", a2 : 50},
+			{a1: "박길동", a2: 40},
+
+		]
+		$rootScope.data3 = 12345678.123456
+		$rootScope.data4 = new Date()
+		$rootScope.data5 = ['aaaa','aabb','cccc','dddd']
+	})
+</script>
+</head>
+<body>
+
+<div ng-app="test_app">
+<p>upper case: {{data1 | uppercase}}</p>
+<hr>
+<p ng-repeat="obj in data2">a1: {{obj.a1}}, a2: {{obj.a2}}</p>
+<hr>
+<p ng-repeat="obj in data2 | orderBy : 'a1'">a1: {{obj.a1}}</p>
+<hr>
+<p>{{data3 | currency}}</p>
+<p>date: {{data4 | date:'yyyy년 MM월 dd일 mm분 ss초 EEEE'}}</p>
+<p ng-repeat="str in data5 | filter : 'aa'">{{str}}</p>
+<hr>
+<input type="text" ng-model="keyword" /><br>
+<p ng-repeat="str in data5 |filter : keyword">{{str}}</p>
+<hr>
+<!-- index번호 1번 부터 3번까지 가져옴  -->
+<p ng-repeat="str in data5 | limitTo: 3 : 1">{{str}}</p>
+<hr>
+<p>{{data3 | number}}</p>
+
+</div>
+
+</body>
+</html>

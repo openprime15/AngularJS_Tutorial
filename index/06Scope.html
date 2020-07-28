@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+	<title>Insert title here</title>
+</head>
+<script>
+	const app = angular.module("test_app", [])
+
+	app.controller("controller1", function ($scope) {
+		$scope.data1 = 100
+		$scope.data2 = 200.35
+		$scope.data3 = true
+		$scope.data4 = "문자"
+		$scope.data5 = {
+			a1: 100,
+			a2: 200
+		}
+		$scope.data6 = [10, 20, 30]
+		$scope.data7 = function (a1, a2) {
+			return a1 + a2
+		}
+	})
+
+</script>
+
+<body>
+
+	<div ng-app="test_app" ng-controller="controller1">
+		<p>data1: {{data1}}</p><br>
+		<p>data2: {{data2}}</p><br>
+		<p>data3: {{data3}}</p><br>
+		<p>data4: {{data4}}</p><br>
+		<p>data5.a1: {{data5.a1}}</p><br>
+		<p>data5.a2: {{data5.a2}}</p><br>
+		<p ng-repeat="a1 in data6">data6: {{a1}}</p><br>
+		<p>data7: {{data7(100,300)}}</p>
+
+	</div>
+</body>
+
+</html>

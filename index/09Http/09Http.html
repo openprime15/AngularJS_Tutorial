@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+	<title>Insert title here</title>
+	<script>
+		const app = angular.module("test_app", [])
+
+		app.controller("controller1", function ($scope, $http) {
+			$scope.ajaxGet = function () {
+				let http = $http.get("data1.html")
+
+				http.then(function (response) {
+					$scope.result = response.data
+				})
+			}
+
+			$scope.ajaxPost = function(){
+				let http = $http.post("data1.html")
+
+				http.then(function(response){
+					$scope.result = response.data
+				})
+			}
+
+			$scope.ajaxBasic = function(){
+				let http = $http({
+					method : "post",
+					url : "data1.html"
+				})
+
+				http.then(function(response){
+					$scope.result = response.data
+				})
+			}
+
+			$scope.ajaxJson = function(){
+				let http = $http.get("data2.html")
+
+				http.then(function(response){
+					$scope.json_data = response.data
+				})
+			}
+
+		})
+
+	</script>
+</head>
+
+<body>
+
+	<div ng-app="test_app" ng-controller="controller1">
+		<button type="button" ng-click="ajaxGet()">Ajax Get</button>
+		<button type="button" ng-click="ajaxPost()">Ajax Post</button>
+		<button type="button" ng-click="ajaxBasic()">Ajax Basic</button>
+		<button type="button" ng-click="ajaxJson()">Ajax Json</button>
+		
+		<p>{{result}}</p>
+		<div>
+		<p ng-repeat="obj in json_data">a1 : {{obj.a1}}, a2:{{obj.a2}}</p>
+		</div>
+	</div>
+
+</body>
+
+</html>

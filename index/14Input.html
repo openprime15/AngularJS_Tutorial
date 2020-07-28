@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+<title>Insert title here</title>
+<script>
+	const app = angular.module("test_app",[])
+
+	app.controller("controller1", function($scope){
+		$scope.input1 = "초기값"
+
+		$scope.c1 = true
+		$scope.c2 = true
+		$scope.r1 = "radio2"
+		$scope.s1 = "select2"
+
+		$scope.getData = function(){
+			$scope.result1 = $scope.input1
+			$scope.result2 = $scope.c1
+			$scope.result3 = $scope.c2
+			$scope.result4 = $scope.c3
+			$scope.result5 = $scope.r1
+		}
+	})
+</script>
+</head>
+<body>
+
+<div ng-app="test_app" ng-controller="controller1">
+	<input type="text" ng-model="input1">
+	<br>
+	<input type="checkbox" ng-model="c1">체크박스1<br>
+	<input type="checkbox" ng-model="c2">체크박스2<br>
+	<input type="checkbox" ng-model="c3">체크박스3<br>
+
+	<input type="radio" ng-model="r1" value="radio1">라디오1<br />
+	<input type="radio" ng-model="r1" value="radio2">라디오2<br />
+	<input type="radio" ng-model="r1" value="radio3">라디오3<br />
+
+	<select ng-model="s1">
+		<option value="select1">항목1</option>
+		<option value="select2">항목2</option>
+		<option value="select3">항목3</option>
+	</select>
+	
+	
+	<button type="button" ng-click="getData()">데이터 출력</button>
+	<hr>
+	<p>초기값: {{input1}}</p>
+	<div ng-switch="c1">
+		<div ng-switch-when="true">
+			<p>체크박스1이 선택되었습니다.</p>
+		</div>
+		<div ng-switch-when="false">
+			<p>체크박스 1이 선택해제되었습니다.</p>
+		</div>
+	</div>
+	<hr>
+<p> input1 : {{result1}}</p>
+<p> check1 : {{result2}}</p>
+<p> check2 : {{result3}}</p>
+<p> check3 : {{result4}}</p>
+<p> radio : {{result5}}</p>
+
+</div>
+
+</body>
+</html>

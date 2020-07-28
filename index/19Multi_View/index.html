@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.27/angular-ui-router.js"></script>
+<title>Insert title here</title>
+<script>
+	const app = angular.module("test_app",["ui.router"])
+
+	app.controller("con1", function($scope){
+		$scope.data1= 100
+	})
+
+	app.controller("con2", function($scope){
+		$scope.data2= 200
+	})
+
+	app.config(function($stateProvider,$urlRouterProvider){
+		$urlRouterProvider.otherwise("main")
+
+		const mainState={
+			name:"main",
+			url:"/main",
+			views: {
+				// ui-view name이 들어감 화면분할을 위해 사용
+				"main" : {
+					templateUrl:"main.html",
+					controller:"con2"
+				},
+				// 요청하는 페이지 /main 의 header
+				"header@main" : {
+					template: "<h3>header</h3>"
+				},
+				"content@main" : {
+					// template: "<h3>content</h3>"
+					templateUrl: "sub.html"
+				},
+				"footer@main" :{
+					template: "<h3>footer</h3>"
+				},
+				"sub1@main" : {
+					template : "<h3>sub1: {{data1}}</h3>",
+					controller:"con1"
+				},
+				"sub2@main" : {
+					template : "<h3>sub2: {{data2}}</h3>"
+				},
+				"sub3@main" : {
+					template : "<h3>sub3</h3>"
+				},
+			}
+		}
+
+		$stateProvider.state(mainState);
+	})
+</script>
+</head>
+<body ng-app="test_app">
+	<ui-view name="main"></ui-view>
+</body>
+</html>

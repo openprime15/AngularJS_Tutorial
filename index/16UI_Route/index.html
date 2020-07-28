@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.27/angular-ui-router.js"></script>
+<title>Insert title here</title>
+<script>
+	const app = angular.module("test_app",["ui.router"]);
+
+	app.config(function($stateProvider, $urlRouterProvider){
+		// $urlRouterProvider : 페이지 값 다를때 홈화면으로 가도록 설
+		$urlRouterProvider.otherwise("main")
+
+		const mainState = {
+			name : "main",
+			url : "/main",
+			template : "<h1>Main</h1>"
+		}
+
+		const page1State = {
+			name: "page1",
+			url : "/page1",
+			templateUrl : "page1.html",
+			controller : "page1Controller"
+		}
+
+		$stateProvider.state(mainState)
+		$stateProvider.state(page1State)
+	})
+			app.controller("page1Controller", function($scope){
+			$scope.data1 = "문자열1"
+			$scope.data2 = "문자열2"
+		})
+</script>
+</head>
+
+<body>
+
+<div ng-app="test_app">
+	<a ui-sref="main">main</a>
+	<a ui-sref="page1">page1</a>
+	<hr>
+	<ui-view></ui-view>
+</div>
+
+</body>
+</html>
